@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Paper Scissors Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      text-align: center;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .game {
+      margin-top: 20px;
+    }
+
+    .options {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+    }
+
+    button {
+      font-size: 48px;
+      padding: 20px;
+      cursor: pointer;
+      border: none;
+      border-radius: 50%;
+      background-color: #4CAF50;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    footer {
+      margin-top: 20px;
+      color: #666;
+    }
+
+    .result {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Rock Paper Scissors</h1>
+    <div class="game">
+      <div class="result" id="result"></div>
+      <div class="options">
+        <button onclick="playerChoice('rock')">👊</button>
+        <button onclick="playerChoice('paper')">🤚</button>
+        <button onclick="playerChoice('scissors')">✌️</button>
+      </div>
+    </div>
+    <footer>Made by konreik</footer>
+  </div>
+  <script>
+    function playerChoice(choice) {
+      const choices = ['rock', 'paper', 'scissors'];
+      const randomIndex = Math.floor(Math.random() * 3);
+      const computerChoice = choices[randomIndex];
+
+      let resultText = '';
+
+      if (choice === computerChoice) {
+        resultText = 'It\'s a tie!';
+      } else if (
+        (choice === 'rock' && computerChoice === 'scissors') ||
+        (choice === 'paper' && computerChoice === 'rock') ||
+        (choice === 'scissors' && computerChoice === 'paper')
+      ) {
+        resultText = 'You win!';
+      } else {
+        resultText = 'You lose!';
+      }
+
+      const resultElement = document.getElementById('result');
+      resultElement.innerText = `You chose ${getEmoji(choice)}. Computer chose ${getEmoji(computerChoice)}. ${resultText}`;
+    }
+
+    function getEmoji(choice) {
+      switch (choice) {
+        case 'rock':
+          return '👊';
+        case 'paper':
+          return '🤚';
+        case 'scissors':
+          return '✌️';
+        default:
+          return '';
+      }
+    }
+  </script>
+</body>
+</html>
